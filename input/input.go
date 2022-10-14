@@ -3,7 +3,6 @@ package input
 import (
 	"bufio"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"strconv"
 	"strings"
@@ -52,7 +51,7 @@ func LoadInt(filename string) []int {
 }
 
 func LoadIntList(filename string) []int {
-	rawContent, err := ioutil.ReadFile(filename)
+	rawContent, err := os.ReadFile(filename)
 	if err != nil {
 		panic(fmt.Sprintf("error reading file %s: %s", filename, err))
 	}

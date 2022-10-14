@@ -1,7 +1,6 @@
 package input
 
 import (
-	"io/ioutil"
 	"os"
 	"testing"
 
@@ -9,7 +8,7 @@ import (
 )
 
 func TestLoad(t *testing.T) {
-	tmpFile, err := ioutil.TempFile(os.TempDir(), "input-")
+	tmpFile, err := os.CreateTemp(os.TempDir(), "input-")
 	require.Nil(t, err)
 	defer os.Remove(tmpFile.Name())
 
