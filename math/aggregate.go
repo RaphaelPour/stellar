@@ -1,9 +1,9 @@
 package math
 
 func Product[T Number](vector []T) T {
-    if len(vector) == 0 {
-        return 0
-    }
+	if len(vector) == 0 {
+		return 0
+	}
 
 	product := T(1)
 	for _, factor := range vector {
