@@ -84,3 +84,21 @@ func LoadDigits(filename string) []int {
 	}
 	return result
 }
+
+func LoadDefaultIntTable() [][]int {
+	return LoadIntTable("input")
+}
+
+func LoadIntTable(filename string) [][]int {
+	content := LoadString(filename)
+	result := make([][]int, len(content))
+	for i, row := range content {
+		col := strings.Fields(row)
+		result[i] = make([]int, len(col))
+		for j, cell := range col {
+			result[i][j], _ = strconv.Atoi(strings.TrimSpace(cell))
+		}
+	}
+
+	return result
+}

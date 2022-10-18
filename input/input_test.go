@@ -71,3 +71,16 @@ func TestLoadDigits(t *testing.T) {
 
 	require.Equal(t, []int{1, 2, 3, 4}, LoadDefaultDigits())
 }
+
+func TestLoadIntTable(t *testing.T) {
+	file, err := os.Create("input")
+	require.Nil(t, err)
+	defer os.Remove("input")
+
+	input := "12 34\n5 6 7 8"
+	_, err = file.Write([]byte(input))
+	require.Nil(t, err)
+	require.Nil(t, file.Close())
+
+	require.Equal(t, [][]int{{12, 34}, {5, 6, 7, 8}}, LoadDefaultIntTable())
+}
