@@ -58,3 +58,16 @@ func TestLoadIntList(t *testing.T) {
 
 	require.Equal(t, []int{1, 2}, LoadIntList("input"))
 }
+
+func TestLoadDigits(t *testing.T) {
+	file, err := os.Create("input")
+	require.Nil(t, err)
+	defer os.Remove("input")
+
+	input := "1234"
+	_, err = file.Write([]byte(input))
+	require.Nil(t, err)
+	require.Nil(t, file.Close())
+
+	require.Equal(t, []int{1, 2, 3, 4}, LoadDefaultDigits())
+}

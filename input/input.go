@@ -70,3 +70,17 @@ func LoadIntList(filename string) []int {
 
 	return numbers
 }
+
+func LoadDefaultDigits() []int {
+	return LoadDigits("input")
+}
+
+func LoadDigits(filename string) []int {
+	content := LoadString(filename)[0]
+	result := make([]int, len(content))
+
+	for i := range content {
+		result[i] = int(content[i] - '0')
+	}
+	return result
+}
