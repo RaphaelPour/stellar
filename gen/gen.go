@@ -1,8 +1,7 @@
-package main
+package gen
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"text/template"
@@ -12,11 +11,11 @@ import (
 	"github.com/fatih/color"
 )
 
-func generateToday(year int) {
-	generate(time.Now().Day(), year)
+func GenerateToday(year int) {
+	Generate(time.Now().Day(), year)
 }
 
-func generate(day, year int) {
+func Generate(day, year int) {
 	fmt.Printf("downloading %d/%d\n", day, year)
 
 	/* download input */
@@ -97,7 +96,7 @@ func generate(day, year int) {
 	}
 
 	/* store input */
-	err = ioutil.WriteFile(filepath.Join(path, "input"), []byte(input), 0777)
+	err = os.WriteFile(filepath.Join(path, "input"), []byte(input), 0777)
 	if err != nil {
 		color.Red("error writing input to file: %s", err)
 		return
