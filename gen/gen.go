@@ -1,5 +1,3 @@
-// +build ignore
-
 package main
 
 import (
@@ -15,10 +13,10 @@ import (
 )
 
 func generateToday(year int) {
-	generate(year, time.Now().Day())
+	generate(time.Now().Day(), year)
 }
 
-func generate(year, day int) {
+func generate(day, year int) {
 	fmt.Printf("downloading %d/%d\n", day, year)
 
 	/* download input */
