@@ -81,6 +81,42 @@ func TestMinMax(t *testing.T) {
 	}
 }
 
+func TestMaxN(t *testing.T) {
+	for _, data := range []struct {
+		inputArray  []int
+		inputLength int
+		expected    []int
+	}{
+		{[]int{1, 2, 3, 4, 5}, 3, []int{5, 4, 3}},
+		{[]int{3, 4, 5}, 3, []int{5, 4, 3}},
+		{[]int{3, 4}, 3, nil},
+		{[]int{3}, 3, nil},
+		{[]int{}, 3, nil},
+	} {
+		require.Equal(t, data.expected, MaxN(data.inputArray, data.inputLength))
+	}
+
+	require.Equal(t, []float64{3.3, 3.2}, MaxN([]float64{3.0, 3.3, 3.15, 3.1, 3.2}, 2))
+}
+
+func TestMinN(t *testing.T) {
+	for _, data := range []struct {
+		inputArray  []int
+		inputLength int
+		expected    []int
+	}{
+		{[]int{1, 2, 3, 4, 5}, 3, []int{1, 2, 3}},
+		{[]int{3, 4, 5}, 3, []int{3, 4, 5}},
+		{[]int{3, 4}, 3, nil},
+		{[]int{3}, 3, nil},
+		{[]int{}, 3, nil},
+	} {
+		require.Equal(t, data.expected, MinN(data.inputArray, data.inputLength))
+	}
+
+	require.Equal(t, []float64{3.0, 3.1}, MinN([]float64{3.0, 3.3, 3.15, 3.1, 3.2}, 2))
+}
+
 func TestWithin(t *testing.T) {
 	require.True(t, Within(uint(2), uint(1), uint(3)))
 	require.True(t, Within(uint(1), uint(1), uint(3)))

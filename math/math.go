@@ -2,6 +2,7 @@ package math
 
 import (
 	coreMath "math"
+	"sort"
 )
 
 type Number interface {
@@ -65,6 +66,24 @@ func MinMax[T Number](nums []T) (T, T) {
 		}
 	}
 	return min, max
+}
+
+func MaxN[T Number](nums []T, n int) []T {
+	if len(nums) < n {
+		return nil
+	}
+
+	sort.Slice(nums, func(i, j int) bool { return nums[i] > nums[j] })
+	return nums[0:n]
+}
+
+func MinN[T Number](nums []T, n int) []T {
+	if len(nums) < n {
+		return nil
+	}
+
+	sort.Slice(nums, func(i, j int) bool { return nums[i] < nums[j] })
+	return nums[0:n]
 }
 
 func Within[T Number](n, lowerBound, upperBound T) bool {
