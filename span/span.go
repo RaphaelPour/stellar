@@ -1,15 +1,15 @@
 package span
 
 type Span struct {
-	from, to int
+	From, To int
 }
 
 func (s1 Span) Contains(s2 Span) bool {
-	if s1.from <= s2.from && s1.to >= s2.to {
+	if s1.From <= s2.From && s1.To >= s2.To {
 		return true
 	}
 
-	if s2.from <= s1.from && s2.to >= s1.to {
+	if s2.From <= s1.From && s2.To >= s1.To {
 		return true
 	}
 	return false
@@ -24,7 +24,7 @@ func (s1 Span) Overlaps(s2 Span) bool {
 	 * xxx
 	 *  x
 	 */
-	if s1.from <= s2.from && s1.to >= s2.to {
+	if s1.From <= s2.From && s1.To >= s2.To {
 		return true
 	}
 
@@ -32,7 +32,7 @@ func (s1 Span) Overlaps(s2 Span) bool {
 	 *  x
 	 * xxx
 	 */
-	if s1.from <= s2.from && s1.to >= s2.from {
+	if s1.From <= s2.From && s1.To >= s2.From {
 		return true
 	}
 
@@ -40,7 +40,7 @@ func (s1 Span) Overlaps(s2 Span) bool {
 	 *  xx
 	 * xx
 	 */
-	if s2.from <= s1.from && s2.to >= s1.from {
+	if s2.From <= s1.From && s2.To >= s1.From {
 		return true
 	}
 
@@ -48,7 +48,7 @@ func (s1 Span) Overlaps(s2 Span) bool {
 	 * xx
 	 *  xx
 	 */
-	if s2.from <= s1.from && s2.to >= s1.to {
+	if s2.From <= s1.From && s2.To >= s1.To {
 		return true
 	}
 
@@ -56,7 +56,7 @@ func (s1 Span) Overlaps(s2 Span) bool {
 	 * xx
 	 *  xx
 	 */
-	if s1.to == s2.from || s2.to == s1.from {
+	if s1.To == s2.From || s2.To == s1.From {
 		return true
 	}
 
