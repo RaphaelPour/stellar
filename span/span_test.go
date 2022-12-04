@@ -8,7 +8,7 @@ import (
 
 func TestSpanContains(t *testing.T) {
 	for _, data := range []struct {
-		from, to Span
+		From, To Span
 		expected bool
 	}{
 		{Span{1, 3}, Span{1, 3}, true},
@@ -16,14 +16,14 @@ func TestSpanContains(t *testing.T) {
 		{Span{1, 3}, Span{2, 2}, true},
 		{Span{1, 3}, Span{4, 6}, false},
 	} {
-		require.Equal(t, data.from.Contains(data.to), data.expected)
-		require.Equal(t, data.to.Contains(data.from), data.expected)
+		require.Equal(t, data.From.Contains(data.To), data.expected)
+		require.Equal(t, data.To.Contains(data.From), data.expected)
 	}
 }
 
 func TestSpanOverlaps(t *testing.T) {
 	for _, data := range []struct {
-		from, to Span
+		From, To Span
 		expected bool
 	}{
 		{Span{1, 3}, Span{1, 3}, true},
@@ -31,7 +31,7 @@ func TestSpanOverlaps(t *testing.T) {
 		{Span{1, 3}, Span{2, 3}, true},
 		{Span{1, 6}, Span{2, 3}, true},
 	} {
-		require.Equal(t, data.from.Overlaps(data.to), data.expected)
-		require.Equal(t, data.to.Overlaps(data.from), data.expected)
+		require.Equal(t, data.From.Overlaps(data.To), data.expected)
+		require.Equal(t, data.To.Overlaps(data.From), data.expected)
 	}
 }
