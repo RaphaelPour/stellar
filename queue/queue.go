@@ -1,28 +1,25 @@
 package queue
 
-type Queue[T any] struct {
-	items []T
-}
+type Queue[T any] []T
 
-func NewQueue[T any]() *Queue[T]{
-	q := new(Queue[T])
-	q.items = make([]T,0)
+func NewQueue[T any]() Queue[T] {
+	return make([]T, 0)
 }
 
 func (q *Queue[T]) Enqueue(item T) {
-	q.items = append(q.items, item)
+	*q = append(*q, item)
 }
 
 func (q *Queue[T]) Dequeue() T {
-	if len(q.items) == 0 {
+	if len(*q) == 0 {
 		panic("queue is empty")
 	}
 
-	item := q.items[0]
-	q.items = q.items[1:]
+	item := (*q)[0]
+	*q = (*q)[1:]
 	return item
 }
 
 func (q Queue[T]) Count() int {
-	return len(q.items)
+	return len(q)
 }
