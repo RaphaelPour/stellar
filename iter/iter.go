@@ -21,7 +21,7 @@ func PairsSeq[S ~[]T, T any](in S, num int) iter.Seq[S] {
 	}
 }
 
-func PairSeq2[S ~[]T, T any](in S, num int) iter.Seq2[int, S] {
+func PairsSeq2[S ~[]T, T any](in S, num int) iter.Seq2[int, S] {
 	return func(yield func(int, S) bool) {
 		index := 0
 		for i := 0; i < len(in); i += num {
