@@ -32,21 +32,21 @@ func TestAbs(t *testing.T) {
 }
 
 func TestMin(t *testing.T) {
-	require.Equal(t, uint(1), Min([]uint{1, 2, 3}))
-	require.Equal(t, uint(1), Min([]uint{3, 2, 1}))
+	require.Equal(t, uint(1), Min([]uint{1, 2, 3}...))
+	require.Equal(t, uint(1), Min([]uint{3, 2, 1}...))
 
-	require.Equal(t, int(1), Min([]int{1, 2, 3}))
-	require.Equal(t, float32(1), Min([]float32{1, 2, 3}))
-	require.Equal(t, float64(1), Min([]float64{1, 2, 3}))
+	require.Equal(t, int(1), Min([]int{1, 2, 3}...))
+	require.Equal(t, float32(1), Min([]float32{1, 2, 3}...))
+	require.Equal(t, float64(1), Min([]float64{1, 2, 3}...))
 }
 
 func TestMax(t *testing.T) {
-	require.Equal(t, uint(3), Max([]uint{1, 2, 3}))
-	require.Equal(t, uint(3), Max([]uint{3, 2, 1}))
+	require.Equal(t, uint(3), Max([]uint{1, 2, 3}...))
+	require.Equal(t, uint(3), Max([]uint{3, 2, 1}...))
 
-	require.Equal(t, int(3), Max([]int{1, 2, 3}))
-	require.Equal(t, float32(3), Max([]float32{1, 2, 3}))
-	require.Equal(t, float64(3), Max([]float64{1, 2, 3}))
+	require.Equal(t, int(3), Max([]int{1, 2, 3}...))
+	require.Equal(t, float32(3), Max([]float32{1, 2, 3}...))
+	require.Equal(t, float64(3), Max([]float64{1, 2, 3}...))
 }
 
 func TestSign(t *testing.T) {
@@ -60,22 +60,22 @@ func TestSign(t *testing.T) {
 
 func TestMinMax(t *testing.T) {
 	{
-		min, max := MinMax([]uint{1, 2, 3})
+		min, max := MinMax([]uint{1, 2, 3}...)
 		require.Equal(t, min, uint(1))
 		require.Equal(t, max, uint(3))
 	}
 	{
-		min, max := MinMax([]int{1, 2, 3})
+		min, max := MinMax([]int{1, 2, 3}...)
 		require.Equal(t, min, int(1))
 		require.Equal(t, max, int(3))
 	}
 	{
-		min, max := MinMax([]float32{1, 2, 3})
+		min, max := MinMax([]float32{1, 2, 3}...)
 		require.Equal(t, min, float32(1))
 		require.Equal(t, max, float32(3))
 	}
 	{
-		min, max := MinMax([]float64{1, 2, 3})
+		min, max := MinMax([]float64{1, 2, 3}...)
 		require.Equal(t, min, float64(1))
 		require.Equal(t, max, float64(3))
 	}

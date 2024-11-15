@@ -35,7 +35,7 @@ func Sign[T Signed](n T) T {
 	return T(1)
 }
 
-func Min[T Number](nums []T) T {
+func Min[T Number](nums ...T) T {
 	min := nums[0]
 	for i := 1; i < len(nums); i++ {
 		if nums[i] < min {
@@ -45,7 +45,7 @@ func Min[T Number](nums []T) T {
 	return min
 }
 
-func Max[T Number](nums []T) T {
+func Max[T Number](nums ...T) T {
 	max := nums[0]
 	for i := 1; i < len(nums); i++ {
 		if nums[i] > max {
@@ -55,7 +55,7 @@ func Max[T Number](nums []T) T {
 	return max
 }
 
-func MinMax[T Number](nums []T) (T, T) {
+func MinMax[T Number](nums ...T) (T, T) {
 	min := nums[0]
 	max := nums[0]
 	for _, n := range nums {
