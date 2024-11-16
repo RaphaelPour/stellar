@@ -127,3 +127,12 @@ func TestWithin(t *testing.T) {
 	require.True(t, Within(float32(2), float32(1), float32(3)))
 	require.True(t, Within(float64(2), float64(1), float64(3)))
 }
+
+func TestGCD(t *testing.T) {
+	require.Equal(t, 2, GCD(6, 8))
+	require.Equal(t, 5, GCD(15, 20))
+}
+
+func TestLCM(t *testing.T) {
+	require.Equal(t, 10, LCM(2, 5))
+}

@@ -13,6 +13,10 @@ type Signed interface {
 	int | float32 | float64
 }
 
+type Integer interface {
+	~int | ~int32 | ~int64 | ~uint
+}
+
 func ToF[T Number](in T) float64 {
 	return float64(in)
 }
@@ -88,4 +92,15 @@ func MinN[T Number](nums []T, n int) []T {
 
 func Within[T Number](n, lowerBound, upperBound T) bool {
 	return n >= lowerBound && n <= upperBound
+}
+
+func GCD[T Integer](a, b T) T {
+	if b == 0 {
+		return a
+	}
+	return GCD(b, a%b)
+}
+
+func LCM[T Integer](a, b T) T {
+	return a * b / GCD(a, b)
 }
