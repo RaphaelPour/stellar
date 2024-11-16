@@ -1,4 +1,4 @@
-package iter
+package generator
 
 import (
 	"testing"
@@ -22,4 +22,8 @@ func TestPairs3(t *testing.T) {
 	},
 		Pairs([]int{1, 2, 3, 4}, 3),
 	)
+}
+
+func TestReverse(t *testing.T) {
+	require.Equal(t, []int{3, 2, 1}, Reverse([]int{1, 2, 3}))
 }
