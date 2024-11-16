@@ -1,4 +1,4 @@
-package iter
+package generator
 
 import (
 	"iter"
@@ -29,6 +29,30 @@ func PairsSeq2[S ~[]T, T any](in S, num int) iter.Seq2[int, S] {
 				return
 			}
 			index += 1
+		}
+	}
+}
+
+func Reverse[S ~[]T, T any](in S) S {
+	return slices.Collect(ReverseSeq(in))
+}
+
+func ReverseSeq[S ~[]T, T any](in S) iter.Seq[T] {
+	return func(yield func(T) bool) {
+		for i := len(in) - 1; i >= 0; i-- {
+			if !yield(in[i]) {
+				return
+			}
+		}
+	}
+}
+
+func ReverseSeq2[S ~[]T, T any](in S) iter.Seq2[int, T] {
+	return func(yield func(int, T) bool) {
+		for i := len(in) - 1; i >= 0; i-- {
+			if !yield(i-len(in)-1, in[i]) {
+				return
+			}
 		}
 	}
 }
