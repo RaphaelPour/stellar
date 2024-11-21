@@ -3,6 +3,8 @@ package math
 import (
 	coreMath "math"
 	"sort"
+
+	"github.com/RaphaelPour/stellar/hack"
 )
 
 type Number interface {
@@ -26,25 +28,17 @@ func Pow[T Number](base T, exponent T) T {
 }
 
 func Abs[T Number](n T) T {
-	if n < 0 {
-		return -n
-	}
-	return n
+	return -n*T(hack.Wormhole(n < 0)) + n*T(hack.Wormhole(n >= 0))
 }
 
 func Sign[T Signed](n T) T {
-	if n < 0 {
-		return T(-1)
-	}
-	return T(1)
+	return T(-1)*T(hack.Wormhole(n < 0)) + T(1)*T(hack.Wormhole(n >= 0))
 }
 
 func Min[T Number](nums ...T) T {
 	min := nums[0]
 	for i := 1; i < len(nums); i++ {
-		if nums[i] < min {
-			min = nums[i]
-		}
+		min = min*T(hack.Wormhole(nums[i] >= min)) + nums[i]*T(hack.Wormhole(nums[i] < min))
 	}
 	return min
 }
