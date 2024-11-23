@@ -31,13 +31,36 @@ func TestAbs(t *testing.T) {
 	require.Equal(t, float64(2), Abs(float64(-2)))
 }
 
-func TestMin(t *testing.T) {
-	require.Equal(t, uint(1), Min([]uint{1, 2, 3}...))
-	require.Equal(t, uint(1), Min([]uint{3, 2, 1}...))
+func TestMinBranchless(t *testing.T) {
+	require.Equal(t, uint(1), MinBranchless([]uint{1, 2, 3}...))
+	require.Equal(t, uint(1), MinBranchless([]uint{3, 2, 1}...))
 
-	require.Equal(t, int(1), Min([]int{1, 2, 3}...))
-	require.Equal(t, float32(1), Min([]float32{1, 2, 3}...))
-	require.Equal(t, float64(1), Min([]float64{1, 2, 3}...))
+	require.Equal(t, int(1), MinBranchless([]int{1, 2, 3}...))
+	require.Equal(t, float32(1), MinBranchless([]float32{1, 2, 3}...))
+	require.Equal(t, float64(1), MinBranchless([]float64{1, 2, 3}...))
+}
+
+func BenchmarkMin(b *testing.B) {
+	arr := make([]int, 1000000)
+	for range b.N {
+		_ = Min(arr...)
+	}
+}
+
+func TestMinTraditional(t *testing.T) {
+	require.Equal(t, uint(1), MinTraditional([]uint{1, 2, 3}...))
+	require.Equal(t, uint(1), MinTraditional([]uint{3, 2, 1}...))
+
+	require.Equal(t, int(1), MinTraditional([]int{1, 2, 3}...))
+	require.Equal(t, float32(1), MinTraditional([]float32{1, 2, 3}...))
+	require.Equal(t, float64(1), MinTraditional([]float64{1, 2, 3}...))
+}
+
+func BenchmarkMinTraditional(b *testing.B) {
+	arr := make([]int, 1000000)
+	for range b.N {
+		_ = MinTraditional(arr...)
+	}
 }
 
 func TestMax(t *testing.T) {

@@ -36,9 +36,23 @@ func Sign[T Signed](n T) T {
 }
 
 func Min[T Number](nums ...T) T {
+	return MinTraditional[T](nums...)
+}
+
+func MinBranchless[T Number](nums ...T) T {
 	min := nums[0]
 	for i := 1; i < len(nums); i++ {
 		min = min*T(hack.Wormhole(nums[i] >= min)) + nums[i]*T(hack.Wormhole(nums[i] < min))
+	}
+	return min
+}
+
+func MinTraditional[T Number](nums ...T) T {
+	min := nums[0]
+	for i := 1; i < len(nums); i++ {
+		if nums[i] < min {
+			min = nums[i]
+		}
 	}
 	return min
 }
