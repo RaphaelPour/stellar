@@ -56,3 +56,43 @@ func ReverseSeq2[S ~[]T, T any](in S) iter.Seq2[int, T] {
 		}
 	}
 }
+
+func Ring[S ~[]T, T any](in S) iter.Seq[T] {
+	return func(yield func(T) bool) {
+		for i := 0; ; i = (i + 1) % len(in) {
+			if !yield(in[i]) {
+				return
+			}
+		}
+	}
+}
+
+func Ring2[S ~[]T, T any](in S) iter.Seq2[int, T] {
+	return func(yield func(int, T) bool) {
+		for i := 0; ; i = (i + 1) % len(in) {
+			if !yield(i, in[i]) {
+				return
+			}
+		}
+	}
+}
+
+func RingReverse[S ~[]T, T any](in S) iter.Seq[T] {
+	return func(yield func(T) bool) {
+		for i := 0; ; i = (i + 1) % len(in) {
+			if !yield(in[len(in)-i-1]) {
+				return
+			}
+		}
+	}
+}
+
+func RingReverse2[S ~[]T, T any](in S) iter.Seq2[int, T] {
+	return func(yield func(int, T) bool) {
+		for i := 0; ; i = (i + 1) % len(in) {
+			if !yield(len(in)-i-1, in[len(in)-i-1]) {
+				return
+			}
+		}
+	}
+}
