@@ -159,3 +159,11 @@ func TestGCD(t *testing.T) {
 func TestLCM(t *testing.T) {
 	require.Equal(t, 10, LCM(2, 5))
 }
+
+func TestMonotonicWithinRange(t *testing.T) {
+	require.True(t, IsMonotonicWithinRange([]int{1, 2, 3, 4}, 1, 2))
+	require.False(t, IsMonotonicWithinRange([]int{1, 4}, 1, 2))
+
+	require.True(t, IsMonotonicWithinRange([]int{1, 4, 6}, 2, 3))
+	require.False(t, IsMonotonicWithinRange([]int{1, 2}, 2, 3))
+}

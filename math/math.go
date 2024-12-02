@@ -112,3 +112,13 @@ func GCD[T Integer](a, b T) T {
 func LCM[T Integer](a, b T) T {
 	return a * b / GCD(a, b)
 }
+
+func IsMonotonicWithinRange[S ~[]T, T Number](in S, minDiff, maxDiff T) bool {
+	for i := 0; i < len(in)-1; i += 1 {
+		diff := in[i+1] - in[i]
+		if diff < minDiff || diff > maxDiff {
+			return false
+		}
+	}
+	return true
+}
