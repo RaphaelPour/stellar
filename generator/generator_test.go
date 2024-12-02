@@ -27,3 +27,15 @@ func TestPairs3(t *testing.T) {
 func TestReverse(t *testing.T) {
 	require.Equal(t, []int{3, 2, 1}, Reverse([]int{1, 2, 3}))
 }
+
+func TestSkipOne(t *testing.T) {
+	require.Equal(
+		t,
+		[][]int{
+			[]int{2, 3},
+			[]int{1, 3},
+			[]int{1, 2},
+		},
+		SkipOne([]int{1, 2, 3}),
+	)
+}

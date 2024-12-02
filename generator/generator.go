@@ -96,3 +96,33 @@ func RingReverse2[S ~[]T, T any](in S) iter.Seq2[int, T] {
 		}
 	}
 }
+
+func SkipOne[S ~[]T, T any](in S) []S {
+	return slices.Collect(SkipOneSeq(in))
+}
+
+func SkipOneSeq[S ~[]T, T any](in S) iter.Seq[S] {
+	return func(yield func(S) bool) {
+		for i := 0; i < len(in); i += 1 {
+			out := make(S, len(in)-1)
+			copy(out[:i], in[:i])
+			copy(out[i:], in[i+1:])
+			if !yield(out) {
+				return
+			}
+		}
+	}
+}
+
+func SkipOneSeq2[S ~[]T, T any](in S) iter.Seq2[int, S] {
+	return func(yield func(int, S) bool) {
+		for i := 0; i < len(in); i += 1 {
+			out := make(S, len(in)-1)
+			copy(out[:i], in[:i])
+			copy(out[i:], in[i+1:])
+			if !yield(i, out) {
+				return
+			}
+		}
+	}
+}
