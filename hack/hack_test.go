@@ -1,6 +1,7 @@
 package hack
 
 import (
+	"errors"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -36,4 +37,15 @@ func TestBool(t *testing.T) {
 func TestWormhole(t *testing.T) {
 	require.Equal(t, int(0), Wormhole(false))
 	require.Equal(t, int(1), Wormhole(true))
+}
+
+func TestYolo(t *testing.T) {
+	require.Equal(t, int(10), Yolo(int(10), nil))
+	require.Equal(t, int(10), Yolo(int(10), errors.New("BOOM")))
+
+	require.NotPanics(t, func() { YoloBoom(int(10), nil) })
+	require.PanicsWithValue(t, "BOOM", func() { YoloBoom(int(10), errors.New("BOOM")) })
+
+	require.Equal(t, int(10), YoloDefault(int(10), nil))
+	require.Equal(t, int(0), YoloDefault(int(10), errors.New("BOOM")))
 }
