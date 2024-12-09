@@ -34,3 +34,5 @@ func YoloDefault[T any](value T, err error) T {
 	var def T
 	return def
 }
+
+func NachMirDieSintflut(_ ...any) {}
